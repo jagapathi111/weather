@@ -1,14 +1,15 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Ionic Weather</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
+       <p><a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></p>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+          <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
     </ion-list>
   </ion-content>

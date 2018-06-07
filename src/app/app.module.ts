@@ -1,34 +1,43 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { HttpModule } from '@angular/http';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
+import { WeatherPage } from '../pages/weather/weather';
+import { LocationsPage } from '../pages/locations/locations';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { WeatherServiceProvider } from '../providers/weatherservice/weatherservice';
+import { GeocodeserviceProvider } from '../providers/geocodeservice/geocodeservice';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationsServiceProvider } from '../providers/locations-service/locations-service';
+import { Pipe, PipeTransform } from '@angular/core';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    WeatherPage,
+    LocationsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    WeatherPage,
+    LocationsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    Geolocation,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    WeatherServiceProvider,
+    GeocodeserviceProvider,
+    LocationsServiceProvider]
 })
-export class AppModule {}
+export class AppModule { }
